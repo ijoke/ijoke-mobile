@@ -12,6 +12,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import br.com.ijoke.R;
+import br.com.ijoke.entity.JokeEntity;
+import br.com.ijoke.service.JokeService;
+
+import com.google.inject.Inject;
 
 /**
  * 
@@ -36,6 +40,14 @@ public class HomeActivity extends RoboFragmentActivity {
      */
     @InjectView(R.id.pager)
     private ViewPager mViewPager;
+    
+    @Inject
+    private JokeService jokeService;
+    
+    private JokeReaderFragment readerFragment;
+    private JokeHistoryFragment historyFragment;
+    private JokeConfigurationFragment configurationFragment; 	
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +61,39 @@ public class HomeActivity extends RoboFragmentActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
+        
+        this.createFragments();
     }
 
-    @Override
+    
+    
+    
+
+
+	private void createFragments() {
+		readerFragment = new JokeReaderFragment();
+		historyFragment = new JokeHistoryFragment();	
+		configurationFragment = new JokeConfigurationFragment();
+	}
+
+
+
+
+
+
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		JokeEntity jokeEntity = this.jokeService.getJokeNotRead();
+		this.readerFragment.updateJoke(jokeEntity);
+		jokeEntity.setRead(Boolean.TRUE);
+		this.jokeService.saveJoke(jokeEntity);
+		this.historyFragment.updateView(this.jokeService.listAllJoke());
+	}
+
+
+
+	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
@@ -106,12 +147,11 @@ public class HomeActivity extends RoboFragmentActivity {
     }
 
     public Fragment getFragment(int position) {
-    	
 		switch (position) {
-			case 0: return new JokeReaderFragment();
-			case 1: return new JokeHistoryFragment();	
-			case 2: return new JokeConfigurationFragment();	
-			default: return new JokeReaderFragment();
+			case 0: return this.readerFragment;
+			case 1: return this.historyFragment;	
+			case 2: return this.configurationFragment;	
+			default: return this.readerFragment;
 		}
 	}
     

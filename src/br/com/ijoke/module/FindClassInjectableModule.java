@@ -7,6 +7,10 @@ import br.com.ijoke.service.ConfigService;
 import br.com.ijoke.service.ConfigServiceImpl;
 import br.com.ijoke.service.DataService;
 import br.com.ijoke.service.DataServiceImpl;
+import br.com.ijoke.service.JokeService;
+import br.com.ijoke.service.JokeServiceImpl;
+import br.com.ijoke.task.service.JokeRestClientService;
+import br.com.ijoke.task.service.JokeRestClientServiceImpl;
 
 import com.google.inject.Binder;
 import com.google.inject.Module;
@@ -33,6 +37,8 @@ public class FindClassInjectableModule implements Module {
 		
 		binder.bind(BufferBuilder.class).to(BufferBuilderImpl.class);
 		binder.bind(ConfigService.class).to(ConfigServiceImpl.class);
+		binder.bind(JokeRestClientService.class).to(JokeRestClientServiceImpl.class);
+		binder.bind(JokeService.class).to(JokeServiceImpl.class);
 		binder.bind(DataService.class).toInstance(new DataServiceImpl(this.context));
 		
 	}
