@@ -3,6 +3,7 @@ package br.com.ijoke.activity;
 import roboguice.fragment.RoboFragment;
 import roboguice.inject.InjectView;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,15 +36,17 @@ public class JokeReaderFragment extends RoboFragment{
         super.onActivityCreated( savedInstanceState );
       
         if (this.joke != null){
-        	txtJokeReader.setText(joke.getJokeDescription());
+        	txtJokeReader.setText(Html.fromHtml("<b><h1>" + joke.getId() + "<b></h1><br><center><h3>" 
+        	        + joke.getJokeDescription() + "</h3></center>"));
         }else{
-        	txtJokeReader.setText("Não há novas piadas.");
+        	txtJokeReader.setText("<h1>Não há novas piadas.</h1>");
         }
         
     }
     
     public void updateJoke(JokeEntity joke){
     	this.joke = joke;
-    	txtJokeReader.setText(joke.getJokeDescription());
+    	txtJokeReader.setText(Html.fromHtml("<b><h1>" + joke.getId() + "<b></h1><br><center><h3>" 
+    	        + joke.getJokeDescription() + "</h3></center>"));
     }
 }

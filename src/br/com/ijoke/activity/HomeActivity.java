@@ -5,6 +5,7 @@ import java.util.Locale;
 import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -57,18 +58,28 @@ public class HomeActivity extends RoboFragmentActivity {
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the app.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        
         this.createFragments();
+        
+        this.historyFragment.updateView(this.jokeService.listAllJoke());
     }
 
-    
-    
-    
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		newJokeReading();
+		mViewPager.setCurrentItem(0);
+	}
 
+	private void newJokeReading() {
+		JokeEntity jokeEntity = this.jokeService.getJokeNotRead();
+		if (jokeEntity != null){
+			this.readerFragment.updateJoke(jokeEntity);
+			jokeEntity.setRead(Boolean.TRUE);
+			this.jokeService.saveJoke(jokeEntity);
+			this.historyFragment.updateView(this.jokeService.listAllJoke());
+		}
+	}
 
 	private void createFragments() {
 		readerFragment = new JokeReaderFragment();
@@ -76,22 +87,11 @@ public class HomeActivity extends RoboFragmentActivity {
 		configurationFragment = new JokeConfigurationFragment();
 	}
 
-
-
-
-
-
 	@Override
 	protected void onRestart() {
 		super.onRestart();
-		JokeEntity jokeEntity = this.jokeService.getJokeNotRead();
-		this.readerFragment.updateJoke(jokeEntity);
-		jokeEntity.setRead(Boolean.TRUE);
-		this.jokeService.saveJoke(jokeEntity);
-		this.historyFragment.updateView(this.jokeService.listAllJoke());
+		newJokeReading();
 	}
-
-
 
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -34,13 +34,11 @@ public class FindClassInjectableModule implements Module {
 	
 	@Override
 	public void configure(Binder binder) {
-		
 		binder.bind(BufferBuilder.class).to(BufferBuilderImpl.class);
 		binder.bind(ConfigService.class).to(ConfigServiceImpl.class);
 		binder.bind(JokeRestClientService.class).to(JokeRestClientServiceImpl.class);
 		binder.bind(JokeService.class).to(JokeServiceImpl.class);
 		binder.bind(DataService.class).toInstance(new DataServiceImpl(this.context));
-		
 	}
 	
 }

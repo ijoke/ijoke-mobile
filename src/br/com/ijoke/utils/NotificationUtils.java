@@ -43,14 +43,14 @@ public class NotificationUtils {
     }
  
     
- // Exibe a notificacao
+    // Exibe a notificacao
     public static void criarNotificacao(Context context, JokeEntity joke) {
         // Recupera o serviço do NotificationManager
         NotificationManager nm = (NotificationManager) context.getSystemService(Activity.NOTIFICATION_SERVICE);
         
         Intent intent = new Intent(context, HomeActivity.class);
         intent.putExtra(JokeEntity.OBJ_NAME, joke);
-        
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         // PendingIntent para executar a Activity se o usuário selecionar a notificação
         PendingIntent p = PendingIntent.getActivity(context, 0, intent , 0);
         

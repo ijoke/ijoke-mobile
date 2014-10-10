@@ -23,13 +23,15 @@ public class JokeServiceImpl implements JokeService {
 
 	@Override
 	public List<JokeEntity> listAllJoke() {
-		return this.dataService.getList(JokeEntity.class);
+		return this.dataService.getList(JokeEntity.class,"id desc" );
 		
 	}
 
 	@Override
 	public JokeEntity saveJoke(JokeEntity joke) {
-		//TODO VER SE NAO ESTOUROU O LIMITE DE 30 JOKES NO BANCO.
+		if (listAllJoke().size() >= 30){
+			this.removeLastJoke();
+		}
 		return this.dataService.insertOrUpdate(joke);
 	}
 
@@ -40,7 +42,9 @@ public class JokeServiceImpl implements JokeService {
 
 	@Override
 	public void removeLastJoke() {
-		//this.dataService.findUniqueResult(JokeEntity.class, "from joke j where j.id", args)
+		//TODO ARRUMAR UM JEITO MELHOR DE FAZER ISSO.
+		JokeEntity joke = this.dataService.getList(JokeEntity.class, "id" ).get(0);
+		removeJoke(joke);
 	}
 
 	@Override

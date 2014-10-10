@@ -8,8 +8,10 @@ import br.com.ijoke.entity.JokeEntity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
@@ -32,11 +34,18 @@ public class StableArrayAdapter extends ArrayAdapter<JokeEntity>{
     	LayoutInflater inflater = context.getLayoutInflater();
     	View v = inflater.inflate(R.layout.list_item, parent, false);  
         TextView tv = (TextView)v.findViewById(R.id.listItemBase);
-      
+        
+        final ViewPager pager = (ViewPager)context.findViewById(R.id.pager);
+        
         JokeEntity j = this.mIdMap.get(position);
         
-        tv.setText(j.getJokeTitle());
-        //tv.setOnClickListener(new RuleListClickListener(this.context,r));
+        tv.setText(j.getId() + " - " + j.getJokeTitle());
+        tv.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				pager.setCurrentItem(0);
+			}
+		});
       return tv;
     }
 

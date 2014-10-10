@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import br.com.ijoke.R;
 import br.com.ijoke.activity.adapter.StableArrayAdapter;
@@ -40,8 +41,28 @@ public class JokeHistoryFragment extends RoboFragment {
         super.onActivityCreated( savedInstanceState );
     }
     
-    public void updateView(List<JokeEntity> jokes){
-    	this.listView.setAdapter(new StableArrayAdapter(context, R.layout.fragment_joke_history, jokes));
+    public void updateView(final List<JokeEntity> jokes){
+    	if ( this.listView != null ){
+    		final StableArrayAdapter adapter = new StableArrayAdapter(context, R.layout.fragment_joke_history, jokes);
+    		this.listView.setAdapter(new StableArrayAdapter(context, R.layout.fragment_joke_history, jokes));
+    		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			        @Override
+                public void onItemClick(AdapterView<?> parent, final View view,
+                    int position, long id) {
+                  final JokeEntity item = (JokeEntity) parent.getItemAtPosition(position);
+                  view.animate().setDuration(2000).alpha(0)
+                      .withEndAction(new Runnable() {
+                        @Override
+                        public void run() {
+                        	jokes.remove(item);
+                          adapter.notifyDataSetChanged();
+                          view.setAlpha(1);
+                        }
+                      });
+                }
+
+              });
+    	}
     }
     
     
