@@ -5,6 +5,7 @@ import java.util.Locale;
 import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,11 +13,17 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
+import android.widget.ShareActionProvider;
+import android.widget.ShareActionProvider.OnShareTargetSelectedListener;
+import android.widget.Toast;
 import br.com.ijoke.R;
 import br.com.ijoke.entity.JokeEntity;
 import br.com.ijoke.service.JokeService;
 
 import com.google.inject.Inject;
+import com.google.inject.spi.Toolable;
 
 /**
  * 
@@ -48,7 +55,9 @@ public class HomeActivity extends RoboFragmentActivity {
     private JokeReaderFragment readerFragment;
     private JokeHistoryFragment historyFragment;
     private JokeConfigurationFragment configurationFragment; 	
+    private JokeEntity readingJoke;
     
+    private ShareActionProvider mShareActionProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +70,8 @@ public class HomeActivity extends RoboFragmentActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
         this.createFragments();
         
-        this.historyFragment.updateView(this.jokeService.listAllJoke());
+       // this.historyFragment.updateView(this.jokeService.listAllJoke());
+       
     }
 
 	@Override
@@ -70,15 +80,31 @@ public class HomeActivity extends RoboFragmentActivity {
 		newJokeReading();
 		mViewPager.setCurrentItem(0);
 	}
+	
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		newJokeReading();
+	}
 
 	private void newJokeReading() {
 		JokeEntity jokeEntity = this.jokeService.getJokeNotRead();
 		if (jokeEntity != null){
+			readingJoke = jokeEntity;
+			if (mShareActionProvider != null){
+				mShareActionProvider.setShareIntent(createIntentShare());
+			}
 			this.readerFragment.updateJoke(jokeEntity);
 			jokeEntity.setRead(Boolean.TRUE);
 			this.jokeService.saveJoke(jokeEntity);
-			this.historyFragment.updateView(this.jokeService.listAllJoke());
+		}else if (readingJoke != null){
+			if (mShareActionProvider != null){
+				mShareActionProvider.setShareIntent(createIntentShare());
+			}
+			this.readerFragment.updateJoke(jokeEntity);
+
 		}
+		this.historyFragment.updateView(this.jokeService.listAllJoke());
 	}
 
 	private void createFragments() {
@@ -86,17 +112,37 @@ public class HomeActivity extends RoboFragmentActivity {
 		historyFragment = new JokeHistoryFragment();	
 		configurationFragment = new JokeConfigurationFragment();
 	}
-
-	@Override
-	protected void onRestart() {
-		super.onRestart();
-		newJokeReading();
+	
+	private Intent createIntentShare(){
+		
+		Intent intent= new Intent(android.content.Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Share Joke");
+        StringBuilder shareJokeSb = new StringBuilder();
+        shareJokeSb.append(readingJoke.getJokeTitle());
+        shareJokeSb.append("\n");
+        shareJokeSb.append(readingJoke.getJokeDescription());
+        shareJokeSb.append("\n\n share by ijoke");
+        
+        intent.putExtra(Intent.EXTRA_TEXT, readingJoke.getJokeTitle() + 
+        		" \n " + readingJoke.getJokeDescription() +  "\n\nshare by ijoke.");
+        
+        return intent;
 	}
 
+	
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
+        // Get the menu item.
+        MenuItem menuItem = menu.findItem(R.id.action_share);
+        // Get the provider and hold onto it to set/change the share intent.
+        mShareActionProvider = (ShareActionProvider) menuItem.getActionProvider();
+        
+        newJokeReading();
+        
         return true;
     }
     
@@ -118,9 +164,12 @@ public class HomeActivity extends RoboFragmentActivity {
             // Return a DummySectionFragment (defined as a static inner class
             // below) with the page number as its lone argument.
             Fragment fragment = getFragment(position);
-            Bundle args = new Bundle();
-            args.putInt("section_number", position + 1);
-            fragment.setArguments(args);
+            
+            if (fragment.getArguments() == null){
+            	Bundle args = new Bundle();
+                args.putInt("section_number", position + 1);
+                fragment.setArguments(args);
+            }
             
             return fragment;
         }

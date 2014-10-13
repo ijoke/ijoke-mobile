@@ -20,9 +20,14 @@ public class JokeConfigurationFragment extends RoboFragment {
 	@InjectView(R.id.btnNotificacao)
 	Button btnNotificacao;
 	
+	public JokeConfigurationFragment(){
+		super();
+	}
+	
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+    	super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_joke_configuration, container, false);
         return rootView;
     }

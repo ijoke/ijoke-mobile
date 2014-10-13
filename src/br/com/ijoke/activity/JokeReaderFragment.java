@@ -23,10 +23,15 @@ public class JokeReaderFragment extends RoboFragment{
 	
 	private JokeEntity joke;
 	
+	public JokeReaderFragment(){
+		super();
+	}
+	
 	
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+    	super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_joke_reader, container, false);
         return rootView;
     }
@@ -39,14 +44,16 @@ public class JokeReaderFragment extends RoboFragment{
         	txtJokeReader.setText(Html.fromHtml("<b><h1>" + joke.getId() + "<b></h1><br><center><h3>" 
         	        + joke.getJokeDescription() + "</h3></center>"));
         }else{
-        	txtJokeReader.setText("<h1>Não há novas piadas.</h1>");
+        	txtJokeReader.setText(Html.fromHtml("<h1>Não há novas piadas.</h1>"));
         }
         
     }
     
     public void updateJoke(JokeEntity joke){
     	this.joke = joke;
-    	txtJokeReader.setText(Html.fromHtml("<b><h1>" + joke.getId() + "<b></h1><br><center><h3>" 
-    	        + joke.getJokeDescription() + "</h3></center>"));
+    	if (txtJokeReader != null){
+    		txtJokeReader.setText(Html.fromHtml("<b><h1>" + joke.getId() + "<b></h1><br><center><h3>" 
+    				+ joke.getJokeDescription() + "</h3></center>"));
+    	}
     }
 }
