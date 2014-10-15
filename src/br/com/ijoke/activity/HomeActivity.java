@@ -69,9 +69,6 @@ public class HomeActivity extends RoboFragmentActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mSectionsPagerAdapter);
         this.createFragments();
-        
-       // this.historyFragment.updateView(this.jokeService.listAllJoke());
-       
     }
 
 	@Override
@@ -101,7 +98,7 @@ public class HomeActivity extends RoboFragmentActivity {
 			if (mShareActionProvider != null){
 				mShareActionProvider.setShareIntent(createIntentShare());
 			}
-			this.readerFragment.updateJoke(jokeEntity);
+			this.readerFragment.updateJoke(readingJoke);
 
 		}
 		this.historyFragment.updateView(this.jokeService.listAllJoke());

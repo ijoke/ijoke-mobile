@@ -18,7 +18,7 @@ import br.com.ijoke.entity.JokeEntity;
  */
 public class JokeReaderFragment extends RoboFragment{
 	
-	@InjectView(R.id.section_label)
+	@InjectView(R.id.txtReadJoke)
 	private TextView txtJokeReader;
 	
 	private JokeEntity joke;

@@ -17,21 +17,20 @@
         android:enabled="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppBaseTheme" >
         <activity
             android:name="br.com.ijoke.activity.HomeActivity"
             android:label="@string/app_name" 
-            android:launchMode="singleTop">
+            android:launchMode="singleTop" 
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <receiver android:name="br.com.ijoke.task.service.StartupIntentReceiver">  
         	<intent-filter>  
             	<action android:name="android.intent.action.BOOT_COMPLETED" />
- 
         	</intent-filter>  
     	</receiver>
          <service

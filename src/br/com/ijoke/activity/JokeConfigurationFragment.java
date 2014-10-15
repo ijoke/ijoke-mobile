@@ -17,8 +17,7 @@ import br.com.ijoke.utils.NotificationUtils;
  */
 public class JokeConfigurationFragment extends RoboFragment {
 
-	@InjectView(R.id.btnNotificacao)
-	Button btnNotificacao;
+	
 	
 	public JokeConfigurationFragment(){
 		super();
@@ -32,18 +31,4 @@ public class JokeConfigurationFragment extends RoboFragment {
         return rootView;
     }
     
-    @Override
-    public void onActivityCreated( Bundle savedInstanceState ) {
-        super.onActivityCreated( savedInstanceState );
-        btnNotificacao.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				NotificationUtils.criarNotificacao(v.getContext(), "Uma nova piada chegou!", "Uma nova piada", "Clique aqui para ler a nova piada", HomeActivity.class);
-				
-			}
-		});
-        
-       
-    }
-	
 }
