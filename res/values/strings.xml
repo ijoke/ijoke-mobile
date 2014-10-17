@@ -8,5 +8,7 @@
     <string name="title_home_page2">Histórico de Piadas</string>
     <string name="title_home_page3">Configurações</string>
     <string name="btn_add_notification">Criar notificação</string>
+    <string name="pref_default_number_key">number_key</string>
+    <string name="pref_default_number_summary">number_summary</string>
 
 </resources>

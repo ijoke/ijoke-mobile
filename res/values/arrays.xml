@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="timeForPullJokeKey">
+        <item>10m</item>
+        <item>30m</item>
+        <item>1h</item>
+        <item>5h</item>
+    </string-array>
+    
+    <string-array name="timeForPullJokeEntry">
+        <item>10 minutos</item>
+        <item>30 minutos</item>
+        <item>1 hora</item>
+        <item>5 horas</item>
+    </string-array>
+    
+</resources>

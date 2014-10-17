@@ -4,28 +4,45 @@
     android:padding="@dimen/activity_margin"
     style="@style/backgroud" >
 
-  
-        <TextView
-        	android:id="@+id/txtReadJoke"
-        	android:layout_width="match_parent"
-        	android:layout_height="wrap_content"
-        	android:maxHeight="200dp"
-         	android:padding="@dimen/activity_margin"            
-        	android:background="@android:color/background_light"/>
+    <ScrollView android:visibility="visible" 
+        android:layout_height="360dp" 
+        android:layout_width="match_parent" 
+        android:keepScreenOn="true" 
+        android:scrollbarStyle="insideInset" 
+        android:id="@+id/scrollView1" 
+        android:scrollbars="vertical" >
+		<TextView
+		 	android:id="@+id/txtReadJoke"
+		 	android:layout_width="match_parent"
+		 	android:layout_height="wrap_content"
+		 	android:scrollbars="vertical"
+		  	android:padding="@dimen/activity_margin"            
+		 	android:background="@android:color/background_light"
+		 	android:layout_gravity="top" 
+		 	android:keepScreenOn="true" 
+		    />
+	</ScrollView>	 	
+ 		
 	
-        <Button android:text="Gostei"
-            style="@style/btnLike" 
-            android:id="@+id/btnlike"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/txtReadJoke"
-            />
-
-        <Button android:text="Não Gostei"
-            style="@style/btnUnLike"
-            android:id="@+id/btnUnlike"
-			android:layout_alignParentRight="true"
-			android:layout_below="@id/txtReadJoke"
-            />
+        <RelativeLayout android:id="@+id/buttons"
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_margin"
+            android:layout_below="@id/scrollView1">
+            
+	        <Button android:text="Gostei"
+	            android:id="@+id/btnlike"
+	            style="@style/ButtonCicle.BtnLike" 
+	            android:layout_alignParentLeft="true"
+	            />
+	        
+	        
+	        <Button android:text="Não Gostei"
+	            android:id="@+id/btnUnlike"
+	            style="@style/ButtonCicle.BtnUnLike"
+				android:layout_alignParentRight="true"
+	            />
+        </RelativeLayout>
         
   
 </RelativeLayout>

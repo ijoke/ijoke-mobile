@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:key="category_geral_key"
+         android:title="Geral">
+     <ListPreference android:key="time_key"
+            android:title="Tempo para novas piadas"
+             android:entries="@array/timeForPullJokeEntry"
+             android:entryValues="@array/timeForPullJokeKey"/>
+             
+  <EditTextPreference  android:key="pref_default_number_key"
+           android:dialogTitle="Seu nome como piadista"
+           android:dialogMessage="Insira seu nome de piadista"
+           android:summary="Adicione seu nome de piadista"
+           android:title="Seu nome como piadista"
+           android:defaultValue="Droidista"/>
+  <CheckBoxPreference android:key="op_salvar_key"
+                android:title="Receber piadas repedidas"
+                android:summary="O servidor não se preocupará em procurar piadas que você já leu."
+                android:defaultValue="false" />
+  
+    </PreferenceCategory>
+    <PreferenceCategory android:key="notification_category_key"
+            android:title="Notificações de piadas novas.">
+        <RingtonePreference android:key="notification_ring_key"
+                android:ringtoneType="all"
+                android:title="Selecionar campainha"/>
+        <CheckBoxPreference android:key="vibrar_key"
+                android:title="Vibrar quando chegar piadas novas"
+                android:defaultValue="true" />
+    </PreferenceCategory>
+</PreferenceScreen>

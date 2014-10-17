@@ -21,6 +21,7 @@ import android.widget.Toast;
 import br.com.ijoke.R;
 import br.com.ijoke.entity.JokeEntity;
 import br.com.ijoke.service.JokeService;
+import br.com.ijoke.utils.AndroidUtils;
 
 import com.google.inject.Inject;
 import com.google.inject.spi.Toolable;
@@ -54,7 +55,6 @@ public class HomeActivity extends RoboFragmentActivity {
     
     private JokeReaderFragment readerFragment;
     private JokeHistoryFragment historyFragment;
-    private JokeConfigurationFragment configurationFragment; 	
     private JokeEntity readingJoke;
     
     private ShareActionProvider mShareActionProvider;
@@ -107,7 +107,6 @@ public class HomeActivity extends RoboFragmentActivity {
 	private void createFragments() {
 		readerFragment = new JokeReaderFragment();
 		historyFragment = new JokeHistoryFragment();	
-		configurationFragment = new JokeConfigurationFragment();
 	}
 	
 	private Intent createIntentShare(){
@@ -137,6 +136,18 @@ public class HomeActivity extends RoboFragmentActivity {
         MenuItem menuItem = menu.findItem(R.id.action_share);
         // Get the provider and hold onto it to set/change the share intent.
         mShareActionProvider = (ShareActionProvider) menuItem.getActionProvider();
+        
+        menuItem = menu.findItem(R.id.actionDenounce);
+        menuItem.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				AndroidUtils.openActivity(HomeActivity.this, JokeConfiguration.class);
+				  
+				return true;
+			}
+		});
+        
         
         newJokeReading();
         
@@ -174,7 +185,7 @@ public class HomeActivity extends RoboFragmentActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 2;
         }
 
         @Override
@@ -196,7 +207,6 @@ public class HomeActivity extends RoboFragmentActivity {
 		switch (position) {
 			case 0: return this.readerFragment;
 			case 1: return this.historyFragment;	
-			case 2: return this.configurationFragment;	
 			default: return this.readerFragment;
 		}
 	}

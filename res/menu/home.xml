@@ -4,5 +4,10 @@
           android:title="@string/action_share"
           android:showAsAction="ifRoom"
           android:actionProviderClass="android.widget.ShareActionProvider" />
+    
+    <item android:id="@+id/actionDenounce"
+          android:title="Denunciar Piada"
+          android:showAsAction="collapseActionView"
+           />
 
 </menu>
