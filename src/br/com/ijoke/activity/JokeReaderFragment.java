@@ -1,15 +1,16 @@
 package br.com.ijoke.activity;
 
-import roboguice.fragment.RoboFragment;
-import roboguice.inject.InjectView;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import br.com.ijoke.R;
 import br.com.ijoke.entity.JokeEntity;
+import roboguice.fragment.RoboFragment;
+import roboguice.inject.InjectView;
 
 /**
  * 
@@ -44,7 +45,7 @@ public class JokeReaderFragment extends RoboFragment{
         	txtJokeReader.setText(Html.fromHtml("<b><h1>" + joke.getId() + "<b></h1><br><center><h3>" 
         	        + joke.getJokeDescription() + "</h3></center>"));
         }else{
-        	txtJokeReader.setText(Html.fromHtml("<h1>Não há novas piadas.</h1>"));
+        	txtJokeReader.setText(Html.fromHtml("<h1>Nï¿½o hï¿½ novas piadas.</h1>"));
         }
         
     }

@@ -1,4 +1,4 @@
-package br.com.ijoke.task.service;
+package br.com.ijoke.service;
 
 import br.com.ijoke.entity.JokeEntity;
 

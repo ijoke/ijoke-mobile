@@ -2,10 +2,8 @@ package br.com.ijoke.activity;
 
 import android.os.Bundle;
 import android.preference.EditTextPreference;
-import android.preference.Preference;
-import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
-import android.text.method.DigitsKeyListener;
+
 import br.com.ijoke.R;
 
 /**

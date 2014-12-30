@@ -33,14 +33,14 @@
             android:launchMode="singleTop" 
             android:screenOrientation="portrait">
         </activity>
-        <receiver android:name="br.com.ijoke.task.service.StartupIntentReceiver">  
+        <receiver android:name=".service.StartupIntentReceiver">
         	<intent-filter>  
             	<action android:name="android.intent.action.BOOT_COMPLETED" />
         	</intent-filter>  
     	</receiver>
          <service
              
-            android:name="br.com.ijoke.task.service.JokePullService"
+            android:name=".service.JokePullService"
             android:enabled="true"
             android:exported="false"
              />

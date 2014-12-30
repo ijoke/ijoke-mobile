@@ -1,11 +1,11 @@
 package br.com.ijoke.service;
 
+import com.google.gson.GsonBuilder;
+import com.google.inject.Inject;
+
 import br.com.ijoke.buffer.BufferFacade;
 import br.com.ijoke.entity.AppConfig;
 import br.com.ijoke.entity.ConfigEntity;
-
-import com.google.gson.GsonBuilder;
-import com.google.inject.Inject;
 
 
 /**

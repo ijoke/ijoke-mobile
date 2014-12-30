@@ -1,8 +1,9 @@
 package br.com.ijoke.activity.listerner;
 
-import br.com.ijoke.activity.callback.DialogCallback;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+
+import br.com.ijoke.activity.callback.DialogCallback;
 
 /**
  * 

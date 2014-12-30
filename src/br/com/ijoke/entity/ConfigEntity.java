@@ -1,8 +1,9 @@
 package br.com.ijoke.entity;
 
-import br.com.ijoke.dao.PersistenceBean;
 import android.content.ContentValues;
 import android.database.Cursor;
+
+import br.com.ijoke.dao.PersistenceBean;
 
 /**
  * 

@@ -1,10 +1,10 @@
 package br.com.ijoke.service;
 
+import com.google.inject.Inject;
+
 import java.util.List;
 
 import br.com.ijoke.entity.JokeEntity;
-
-import com.google.inject.Inject;
 
 /**
  * 

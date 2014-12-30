@@ -1,13 +1,13 @@
-package br.com.ijoke.task.service;
+package br.com.ijoke.service;
 
-import roboguice.service.RoboIntentService;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import br.com.ijoke.entity.JokeEntity;
-import br.com.ijoke.service.JokeService;
 import br.com.ijoke.utils.NotificationUtils;
-
 import com.google.inject.Inject;
+import roboguice.service.RoboIntentService;
 
 public class JokePullService extends RoboIntentService{
 
@@ -34,7 +34,9 @@ public class JokePullService extends RoboIntentService{
 				jokeService.saveJoke(jokeEntity);
 				NotificationUtils.criarNotificacao(getApplicationContext(), jokeEntity);
 			}
-			
+
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            prefs.getInt("timeForPullJokeEntry",30);
 			SystemClock.sleep(30000); // 30 seconds
 		}
 		

@@ -1,4 +1,4 @@
-package br.com.ijoke.task.service;
+package br.com.ijoke.service;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

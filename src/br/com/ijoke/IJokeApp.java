@@ -1,14 +1,12 @@
 package br.com.ijoke;
 
-import roboguice.RoboGuice;
 import android.app.Application;
 import android.content.Intent;
-import android.os.Bundle;
+
 import br.com.ijoke.buffer.BufferBuilder;
 import br.com.ijoke.module.FindClassInjectableModule;
-import br.com.ijoke.task.service.JokePullService;
-import br.com.ijoke.task.service.JokeRestClientService;
-import br.com.ijoke.task.service.JokeRestClientServiceImpl;
+import br.com.ijoke.service.JokePullService;
+import roboguice.RoboGuice;
 
 /**
  * 

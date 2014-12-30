@@ -2,6 +2,7 @@ package br.com.ijoke.entity;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+
 import br.com.ijoke.dao.PersistenceBean;
 
 /**-

@@ -1,5 +1,10 @@
 package br.com.ijoke.service;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteCursor;
+import android.util.Log;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,11 +15,6 @@ import br.com.ijoke.dao.DatabaseManager;
 import br.com.ijoke.dao.PersistenceBean;
 import br.com.ijoke.utils.CollectionUtils;
 import br.com.ijoke.utils.NumberUtil;
-
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteCursor;
-import android.util.Log;
 
 public class DataServiceImpl implements DataService {
 	

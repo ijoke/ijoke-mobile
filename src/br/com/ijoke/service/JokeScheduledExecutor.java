@@ -1,11 +1,11 @@
-package br.com.ijoke.task.service;
+package br.com.ijoke.service;
+
+import android.content.Context;
+import android.content.Intent;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
-import android.content.Context;
-import android.content.Intent;
 
 public class JokeScheduledExecutor implements Runnable{
 	

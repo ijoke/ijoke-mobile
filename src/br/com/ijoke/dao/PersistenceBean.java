@@ -1,9 +1,9 @@
 package br.com.ijoke.dao;
 
-import java.io.Serializable;
-
 import android.content.ContentValues;
 import android.database.Cursor;
+
+import java.io.Serializable;
 
 public abstract class PersistenceBean implements Serializable {
 	

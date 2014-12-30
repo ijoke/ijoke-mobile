@@ -1,6 +1,10 @@
 package br.com.ijoke.module;
 
 import android.content.Context;
+
+import com.google.inject.Binder;
+import com.google.inject.Module;
+
 import br.com.ijoke.buffer.BufferBuilder;
 import br.com.ijoke.buffer.BufferBuilderImpl;
 import br.com.ijoke.service.ConfigService;
@@ -9,11 +13,8 @@ import br.com.ijoke.service.DataService;
 import br.com.ijoke.service.DataServiceImpl;
 import br.com.ijoke.service.JokeService;
 import br.com.ijoke.service.JokeServiceImpl;
-import br.com.ijoke.task.service.JokeRestClientService;
-import br.com.ijoke.task.service.JokeRestClientServiceImpl;
-
-import com.google.inject.Binder;
-import com.google.inject.Module;
+import br.com.ijoke.service.JokeRestClientService;
+import br.com.ijoke.service.JokeRestClientServiceImpl;
 
 /**
  * 

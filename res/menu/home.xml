@@ -6,7 +6,7 @@
           android:actionProviderClass="android.widget.ShareActionProvider" />
     
     <item android:id="@+id/actionDenounce"
-          android:title="Denunciar Piada"
+          android:title="Configurações"
           android:showAsAction="collapseActionView"
            />
 

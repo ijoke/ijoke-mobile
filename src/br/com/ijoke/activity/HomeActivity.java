@@ -1,11 +1,5 @@
 package br.com.ijoke.activity;
 
-import java.util.Locale;
-
-import roboguice.activity.RoboFragmentActivity;
-import roboguice.inject.ContentView;
-import roboguice.inject.InjectView;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,15 +10,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.widget.ShareActionProvider;
-import android.widget.ShareActionProvider.OnShareTargetSelectedListener;
-import android.widget.Toast;
+
+import com.google.inject.Inject;
+
+import java.util.Locale;
+
 import br.com.ijoke.R;
 import br.com.ijoke.entity.JokeEntity;
 import br.com.ijoke.service.JokeService;
 import br.com.ijoke.utils.AndroidUtils;
-
-import com.google.inject.Inject;
-import com.google.inject.spi.Toolable;
+import roboguice.activity.RoboFragmentActivity;
+import roboguice.inject.ContentView;
+import roboguice.inject.InjectView;
 
 /**
  * 

@@ -1,22 +1,19 @@
 package br.com.ijoke.activity;
 
-import java.util.List;
-
-import roboguice.fragment.RoboFragment;
-import roboguice.inject.InjectView;
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
+
+import java.util.List;
+
 import br.com.ijoke.R;
 import br.com.ijoke.activity.adapter.StableArrayAdapter;
 import br.com.ijoke.entity.JokeEntity;
+import roboguice.fragment.RoboFragment;
+import roboguice.inject.InjectView;
 
 /**
  * 

@@ -1,8 +1,5 @@
 package br.com.ijoke.activity.adapter;
 
-import java.util.HashMap;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Context;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -13,6 +10,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import java.util.HashMap;
+import java.util.List;
+
 import br.com.ijoke.R;
 import br.com.ijoke.activity.JokeReaderFragment;
 import br.com.ijoke.entity.JokeEntity;

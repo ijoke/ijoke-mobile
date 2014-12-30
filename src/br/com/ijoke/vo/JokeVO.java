@@ -1,4 +1,4 @@
-package br.com.ijoke.task.vo;
+package br.com.ijoke.vo;
 /**
  * 
  * @author Wagner Jeronimo

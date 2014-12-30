@@ -1,13 +1,14 @@
 package br.com.ijoke.utils;
 
-import br.com.ijoke.activity.callback.DialogCallback;
-import br.com.ijoke.activity.listerner.ButtonDialogClickListener;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+
+import br.com.ijoke.activity.callback.DialogCallback;
+import br.com.ijoke.activity.listerner.ButtonDialogClickListener;
 
 
 /**
@@ -43,7 +44,7 @@ public class AndroidUtils {
 		alertDialog.setMessage(msg);
 		OnClickListener listener = new ButtonDialogClickListener(callback);
 		alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Sim",listener);
-		alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Não", listener);
+		alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Nï¿½o", listener);
 		alertDialog.show();
 	}
 	

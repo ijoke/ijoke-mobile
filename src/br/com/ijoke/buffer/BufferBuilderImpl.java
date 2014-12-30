@@ -1,9 +1,9 @@
 package br.com.ijoke.buffer;
 
+import com.google.inject.Inject;
+
 import br.com.ijoke.entity.AppConfig;
 import br.com.ijoke.service.ConfigService;
-
-import com.google.inject.Inject;
 
 /**
  * 
